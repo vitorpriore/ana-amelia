@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dra. Ana Amélia Cruz — Ortodontista em João Pessoa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Hanken+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--green:#32524b;
+--green-deep:oklch(28% .06 160);
+--green-mid:oklch(38% .07 160);
+--green-light:oklch(52% .07 160);
+--gold:oklch(76% .09 82);
+--gold-light:oklch(84% .07 82);
+--cream:oklch(97% .012 82);
+--cream-warm:oklch(94% .016 82);
+--cream-mid:oklch(90% .018 82);
+--ink:oklch(18% .03 160);
+--ink-soft:oklch(32% .04 160);
+--ink-muted:oklch(52% .03 160);
+--white-tint:oklch(99% .006 82);
+--font-display:'Cormorant Garamond',Georgia,serif;
+--font-body:'Hanken Grotesk',system-ui,sans-serif;
+--r-sm:6px;
+--r-md:12px;
+--r-lg:24px;
+--r-xl:48px;
+--r-arc:50% 50% 0 0/40% 40% 0 0;
+--shadow-xs:0 1px 3px oklch(18% .04 160/.08),0 1px 2px oklch(18% .04 160/.06);
+--shadow-sm:0 2px 8px oklch(18% .04 160/.08),0 1px 3px oklch(18% .04 160/.05);
+--shadow-md:0 8px 24px oklch(18% .04 160/.1),0 2px 8px oklch(18% .04 160/.06);
+--shadow-lg:0 16px 48px oklch(18% .04 160/.12),0 4px 16px oklch(18% .04 160/.07);
+--ease-out-expo:cubic-bezier(.16,1,.3,1);
+--ease-out-quart:cubic-bezier(.25,1,.5,1);
+--container-pad:clamp(20px,5vw,80px);
+--section-gap:clamp(72px,10vw,120px);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--cream);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:var(--font-body)}
+
+.container{max-width:1200px;margin:0 auto;padding-inline:var(--container-pad)}
+.section-gap{padding-block:var(--section-gap)}
+
+.label-tag{font-family:var(--font-body);font-size:clamp(10px,1.1vw,11px);font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--green-light)}
+.display{font-family:var(--font-display);font-weight:500;line-height:1.1;letter-spacing:-.02em}
+.display-xl{font-size:clamp(38px,6.5vw,88px)}
+.display-lg{font-size:clamp(30px,4.5vw,60px)}
+.display-md{font-size:clamp(24px,3vw,42px)}
+.display-sm{font-size:clamp(20px,2.2vw,30px)}
+.body-lg{font-size:clamp(16px,1.3vw,18px);line-height:1.7;color:var(--ink-soft)}
+.body-sm{font-size:clamp(14px,1.1vw,15px);line-height:1.65;color:var(--ink-muted)}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:var(--r-sm);font-family:var(--font-body);font-size:14px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;transition:all 200ms var(--ease-out-quart);cursor:pointer;border:none}
+.btn-primary{background:var(--green);color:var(--cream);box-shadow:var(--shadow-sm)}
+.btn-primary:hover{background:var(--green-deep);box-shadow:var(--shadow-md);transform:translateY(-1px)}
+.btn-primary:active{transform:translateY(0)}
+.btn-outline{background:transparent;color:var(--green);border:1.5px solid var(--green)}
+.btn-outline:hover{background:var(--green);color:var(--cream)}
+.btn-ghost-white{background:transparent;color:var(--cream);border:1.5px solid oklch(99% .006 82/.5)}
+.btn-ghost-white:hover{background:oklch(99% .006 82/.12);border-color:var(--cream)}
+
+.divider-thin{width:40px;height:1px;background:var(--gold);display:block;margin-block:20px}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0;transition:background 300ms,box-shadow 300ms}
+.nav.scrolled{background:oklch(97% .012 82/.96);backdrop-filter:blur(12px);box-shadow:var(--shadow-xs)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;gap:24px}
+.nav-logo img{height:44px;width:auto;object-fit:contain}
+.nav-links{display:flex;align-items:center;gap:clamp(16px,2.5vw,32px);list-style:none}
+.nav-links a{font-size:13px;font-weight:400;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);transition:color 200ms}
+.nav-links a:hover{color:var(--green)}
+.nav-cta{flex-shrink:0}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:8px;cursor:pointer}
+.nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--ink);transition:all 250ms}
+.nav-mobile{display:none;position:fixed;inset:0;background:var(--cream);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.nav-mobile.open{display:flex}
+.nav-mobile a{font-family:var(--font-display);font-size:clamp(24px,5vw,36px);color:var(--ink);font-weight:400}
+.nav-mobile a:hover{color:var(--green)}
+.nav-mobile .btn{margin-top:16px}
+
+/* ── HERO ── */
+.hero{min-height:100svh;display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--green-deep);position:relative;overflow:hidden}
+.hero-content{display:flex;flex-direction:column;justify-content:center;padding:clamp(100px,10vw,140px) clamp(24px,5vw,80px) clamp(60px,6vw,80px);position:relative;z-index:2}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.hero-eyebrow span{color:var(--gold-light);font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase}
+.hero-eyebrow::after{content:'';display:block;width:32px;height:1px;background:var(--gold)}
+.hero-title{font-family:var(--font-display);font-size:clamp(40px,5.5vw,76px);font-weight:500;line-height:1.08;letter-spacing:-.02em;color:var(--cream);margin-bottom:24px}
+.hero-title em{font-style:italic;color:var(--gold-light)}
+.hero-sub{font-size:clamp(15px,1.3vw,17px);line-height:1.7;color:oklch(94% .012 82/.75);max-width:420px;margin-bottom:40px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.hero-badge{position:absolute;bottom:clamp(32px,4vw,48px);left:clamp(24px,5vw,80px);display:flex;align-items:center;gap:10px}
+.hero-badge-seal{width:52px;height:52px;flex-shrink:0}
+.hero-badge-text{font-size:11px;line-height:1.5;color:oklch(94% .012 82/.55);letter-spacing:.04em}
+.hero-badge-text strong{display:block;color:var(--gold-light);font-weight:500;letter-spacing:.1em;text-transform:uppercase;font-size:10px}
+
+.hero-visual{position:relative;overflow:hidden}
+.hero-img-wrap{position:absolute;inset:0}
+.hero-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.hero-img-scrim{position:absolute;inset:0;background:linear-gradient(to right,var(--green-deep) 0%,oklch(28% .06 160/.3) 60%,transparent 100%)}
+.hero-number{position:absolute;bottom:clamp(24px,4vw,48px);right:clamp(24px,4vw,48px);text-align:right}
+.hero-number span{display:block;font-family:var(--font-display);font-size:clamp(48px,6vw,80px);font-weight:400;color:oklch(99% .006 82/.1);line-height:1;letter-spacing:-.04em}
+.hero-number small{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:oklch(94% .012 82/.3)}
+
+/* monograma fantasma */
+.mono-ghost{position:absolute;pointer-events:none;user-select:none;font-family:var(--font-display);font-weight:600;line-height:1;letter-spacing:-.04em;opacity:.05;color:var(--cream);z-index:1;font-size:clamp(180px,25vw,320px);right:-2%;top:50%;transform:translateY(-50%)}
+
+/* ── CREDIBILIDADE ── */
+.cred{background:var(--cream-warm);border-top:1px solid oklch(90% .02 82);border-bottom:1px solid oklch(90% .02 82)}
+.cred-inner{padding-block:clamp(48px,6vw,72px)}
+.cred-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.cred-item{text-align:center;padding:clamp(20px,3vw,32px) 16px;position:relative}
+.cred-item:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;bottom:20%;width:1px;background:oklch(70% .02 160/.3)}
+.cred-num{font-family:var(--font-display);font-size:clamp(36px,4vw,58px);font-weight:500;color:var(--green);line-height:1;letter-spacing:-.03em;margin-bottom:6px}
+.cred-label{font-size:clamp(11px,1vw,13px);font-weight:400;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-muted)}
+
+/* ── SOBRE ── */
+.sobre{background:var(--cream)}
+.sobre-inner{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(40px,6vw,80px);align-items:center}
+.sobre-visual{position:relative}
+.sobre-arc{width:100%;aspect-ratio:3/4;border-radius:50% 50% 0 0/30% 30% 0 0;overflow:hidden;box-shadow:var(--shadow-lg)}
+.sobre-arc img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.sobre-tag{position:absolute;bottom:-1px;right:-1px;background:var(--green);color:var(--cream);padding:12px 20px;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;border-radius:var(--r-md) 0 0 0}
+.sobre-gold-line{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.sobre-gold-line::before{content:'';display:block;width:28px;height:1px;background:var(--gold)}
+.sobre-bio{margin-top:24px;display:flex;flex-direction:column;gap:12px}
+.sobre-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.chip{padding:6px 14px;border:1px solid oklch(70% .06 160/.4);border-radius:100px;font-size:12px;font-weight:400;letter-spacing:.04em;color:var(--green-mid)}
+
+/* ── SERVIÇOS ── */
+.servicos{background:var(--cream-warm)}
+.servicos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,2vw,20px);margin-top:clamp(32px,4vw,48px)}
+.svc-card{background:var(--white-tint);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform 250ms var(--ease-out-quart),box-shadow 250ms}
+.svc-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.svc-img{aspect-ratio:3/2;overflow:hidden}
+.svc-img img{width:100%;height:100%;object-fit:cover;transition:transform 400ms var(--ease-out-quart)}
+.svc-card:hover .svc-img img{transform:scale(1.04)}
+.svc-body{padding:clamp(16px,2vw,24px)}
+.svc-num{font-family:var(--font-display);font-size:28px;font-weight:400;color:oklch(70% .04 160/.35);line-height:1;margin-bottom:8px}
+.svc-title{font-family:var(--font-display);font-size:clamp(16px,1.6vw,20px);font-weight:500;color:var(--ink);margin-bottom:8px}
+.svc-desc{font-size:13px;line-height:1.65;color:var(--ink-muted)}
+.svc-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--green);transition:gap 200ms}
+.svc-link:hover{gap:10px}
+.svc-link svg{flex-shrink:0}
+
+/* ── COMO FUNCIONA ── */
+.como{background:var(--green-deep);position:relative;overflow:hidden}
+.como-mono{position:absolute;font-family:var(--font-display);font-size:clamp(200px,28vw,380px);font-weight:600;color:var(--cream);opacity:.04;right:-4%;top:50%;transform:translateY(-50%);pointer-events:none;user-select:none;line-height:1;letter-spacing:-.04em}
+.como-inner{position:relative;z-index:2}
+.como-title{color:var(--cream)}
+.como-sub{color:oklch(94% .012 82/.6);max-width:480px}
+.como-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2.5vw,32px);margin-top:clamp(40px,5vw,64px)}
+.step{position:relative}
+.step:not(:last-child)::after{content:'';position:absolute;top:32px;right:-16px;width:32px;height:1px;background:oklch(94% .012 82/.15)}
+.step-num{font-family:var(--font-display);font-size:clamp(36px,4vw,52px);font-weight:400;color:var(--gold);line-height:1;margin-bottom:12px;letter-spacing:-.03em}
+.step-title{font-size:clamp(14px,1.3vw,16px);font-weight:500;color:var(--cream);margin-bottom:8px;letter-spacing:.02em}
+.step-desc{font-size:13px;line-height:1.65;color:oklch(94% .012 82/.55)}
+.step-img{aspect-ratio:1/1;border-radius:var(--r-md);overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow-md)}
+.step-img img{width:100%;height:100%;object-fit:cover}
+
+/* ── GALERIA ── */
+.galeria{background:var(--cream)}
+.galeria-intro{max-width:600px}
+.galeria-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto;gap:clamp(6px,1vw,10px);margin-top:clamp(32px,4vw,48px)}
+.gal-item{overflow:hidden;border-radius:var(--r-md);position:relative;cursor:zoom-in}
+.gal-item img{width:100%;height:100%;object-fit:cover;aspect-ratio:1/1;transition:transform 400ms var(--ease-out-quart)}
+.gal-item:hover img{transform:scale(1.04)}
+.gal-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,oklch(18% .03 160/.35) 0%,transparent 60%);opacity:0;transition:opacity 300ms}
+.gal-item:hover::after{opacity:1}
+.gal-item.large{grid-column:span 2;grid-row:span 2}
+.gal-item.large img{aspect-ratio:unset;height:100%}
+.gal-label{position:absolute;bottom:10px;left:12px;font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--cream);opacity:0;transition:opacity 300ms;z-index:2}
+.gal-item:hover .gal-label{opacity:.8}
+
+/* ── DEPOIMENTOS ── */
+.depo{background:var(--cream-warm)}
+.depo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,24px);margin-top:clamp(40px,5vw,56px)}
+.depo-card{background:var(--white-tint);border-radius:var(--r-lg);padding:clamp(24px,3vw,36px);box-shadow:var(--shadow-sm);position:relative}
+.depo-quote{font-family:var(--font-display);font-size:64px;font-weight:400;color:var(--gold);line-height:.7;margin-bottom:16px;display:block}
+.depo-text{font-family:var(--font-display);font-size:clamp(16px,1.5vw,19px);font-style:italic;line-height:1.5;color:var(--ink);margin-bottom:20px}
+.depo-author{display:flex;align-items:center;gap:10px}
+.depo-avatar{width:36px;height:36px;border-radius:50%;overflow:hidden;background:var(--cream-mid);flex-shrink:0}
+.depo-avatar img{width:100%;height:100%;object-fit:cover}
+.depo-name{font-size:13px;font-weight:500;color:var(--ink)}
+.depo-role{font-size:11px;color:var(--ink-muted);letter-spacing:.04em}
+.depo-stars{display:flex;gap:2px;margin-bottom:12px}
+.depo-stars svg{color:var(--gold)}
+
+/* ── DIFERENCIAIS ── */
+.dif{background:var(--cream)}
+.dif-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,32px);margin-top:clamp(40px,5vw,56px)}
+.dif-card{padding:clamp(28px,3vw,40px);background:var(--white-tint);border-radius:var(--r-lg);box-shadow:var(--shadow-sm);border-top:2px solid var(--gold)}
+.dif-icon{width:44px;height:44px;background:oklch(38% .07 160/.1);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;margin-bottom:20px;color:var(--green)}
+.dif-title{font-family:var(--font-display);font-size:clamp(18px,1.8vw,22px);font-weight:500;margin-bottom:10px}
+.dif-desc{font-size:14px;line-height:1.65;color:var(--ink-muted)}
+
+/* ── FAQ ── */
+.faq{background:var(--cream-warm)}
+.faq-list{margin-top:clamp(32px,4vw,48px);display:flex;flex-direction:column;gap:0;border-top:1px solid oklch(80% .02 160/.4)}
+.faq-item{border-bottom:1px solid oklch(80% .02 160/.4)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:clamp(16px,2vw,22px) 0;background:none;border:none;text-align:left;cursor:pointer;font-family:var(--font-display);font-size:clamp(16px,1.5vw,19px);font-weight:500;color:var(--ink);transition:color 200ms}
+.faq-q:hover{color:var(--green)}
+.faq-icon{flex-shrink:0;width:24px;height:24px;border:1px solid oklch(60% .04 160/.3);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background 200ms,border-color 200ms}
+.faq-item.open .faq-icon{background:var(--green);border-color:var(--green)}
+.faq-icon svg{color:var(--ink-muted);transition:transform 250ms,color 200ms}
+.faq-item.open .faq-icon svg{transform:rotate(45deg);color:var(--cream)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 400ms var(--ease-out-quart)}
+.faq-item.open .faq-a{max-height:300px}
+.faq-a-inner{padding:0 0 clamp(14px,2vw,20px);font-size:14px;line-height:1.75;color:var(--ink-soft);max-width:680px}
+
+/* ── CTA FINAL ── */
+.cta-final{background:var(--green);position:relative;overflow:hidden}
+.cta-final-bg{position:absolute;inset:0;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.cta-mono{position:absolute;right:-2%;top:50%;transform:translateY(-50%);font-family:var(--font-display);font-size:clamp(200px,28vw,380px);font-weight:600;color:var(--cream);opacity:.05;pointer-events:none;user-select:none;line-height:1;letter-spacing:-.04em}
+.cta-inner{position:relative;z-index:2;text-align:center;padding-block:clamp(64px,8vw,100px)}
+.cta-title{font-family:var(--font-display);font-size:clamp(32px,5vw,68px);font-weight:500;line-height:1.1;letter-spacing:-.02em;color:var(--cream);margin-bottom:16px}
+.cta-title em{font-style:italic;color:var(--gold-light)}
+.cta-sub{color:oklch(94% .012 82/.7);font-size:clamp(14px,1.2vw,16px);margin-bottom:40px;max-width:480px;margin-inline:auto}
+.cta-form{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:600px;margin-inline:auto}
+.cta-form input,
+.cta-form select{flex:1 1 180px;padding:14px 18px;border-radius:var(--r-sm);border:1px solid oklch(94% .012 82/.2);background:oklch(99% .006 82/.1);color:var(--cream);font-family:var(--font-body);font-size:14px;outline:none;transition:border-color 200ms}
+.cta-form input::placeholder{color:oklch(94% .012 82/.45)}
+.cta-form select{color:oklch(94% .012 82/.7);appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23d5c0a0' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.cta-form option{background:var(--green-deep);color:var(--cream)}
+.cta-form input:focus,
+.cta-form select:focus{border-color:var(--gold)}
+.cta-form .btn{flex-shrink:0}
+
+/* ── CONTATO ── */
+.contato{background:var(--cream)}
+.contato-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,80px)}
+.contato-info{display:flex;flex-direction:column;gap:28px}
+.c-item{display:flex;align-items:flex-start;gap:14px}
+.c-icon{width:40px;height:40px;background:oklch(38% .07 160/.08);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;color:var(--green);flex-shrink:0;margin-top:2px}
+.c-label{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:4px}
+.c-value{font-size:15px;font-weight:400;color:var(--ink);line-height:1.5}
+.c-value a{color:var(--green);transition:color 200ms}
+.c-value a:hover{color:var(--green-deep)}
+.map-wrap{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-md);height:260px}
+.map-wrap iframe{width:100%;height:100%;border:0}
+
+/* ── RODAPÉ ── */
+.footer{background:var(--green-deep);color:oklch(94% .012 82/.75)}
+.footer-main{padding-block:clamp(48px,6vw,72px)}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1.2fr 1fr;gap:clamp(24px,4vw,48px)}
+.footer-brand img{height:40px;width:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.85;margin-bottom:16px}
+.footer-tagline{font-family:var(--font-display);font-style:italic;font-size:clamp(15px,1.4vw,17px);color:oklch(94% .012 82/.55);line-height:1.5;max-width:220px}
+.footer-heading{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-light);margin-bottom:16px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-links a{font-size:13px;color:oklch(94% .012 82/.6);transition:color 200ms}
+.footer-links a:hover{color:var(--cream)}
+.footer-contact-line{font-size:13px;line-height:1.65;color:oklch(94% .012 82/.6);display:flex;flex-direction:column;gap:4px}
+.footer-contact-line a{color:oklch(94% .012 82/.7);transition:color 200ms}
+.footer-contact-line a:hover{color:var(--cream)}
+.footer-social{display:flex;gap:8px;margin-top:16px}
+.footer-social a{width:36px;height:36px;border:1px solid oklch(94% .012 82/.2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:oklch(94% .012 82/.55);transition:all 200ms}
+.footer-social a:hover{background:oklch(94% .012 82/.1);color:var(--cream);border-color:oklch(94% .012 82/.4)}
+.footer-bottom{border-top:1px solid oklch(94% .012 82/.1);padding-block:20px}
+.footer-bottom-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.footer-copy{font-size:12px;color:oklch(94% .012 82/.35);letter-spacing:.02em}
+.footer-mono{font-family:var(--font-display);font-size:18px;font-weight:600;color:oklch(94% .012 82/.15);letter-spacing:-.02em}
+
+/* ── SEAL SVG ── */
+.seal-svg text{font-family:var(--font-display)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+.hero{grid-template-columns:1fr}
+.hero-visual{position:absolute;inset:0;z-index:0}
+.hero-img-scrim{background:linear-gradient(to right,oklch(28% .06 160/.95) 0%,oklch(28% .06 160/.7) 60%,oklch(28% .06 160/.4) 100%)}
+.hero-content{min-height:100svh;padding-top:120px}
+.hero-sub{max-width:540px}
+.mono-ghost{display:none}
+.sobre-inner{grid-template-columns:1fr;gap:40px}
+.sobre-arc{max-width:380px;margin-inline:auto}
+.cred-grid{grid-template-columns:repeat(2,1fr)}
+.cred-item:nth-child(2)::after{display:none}
+.como-steps{grid-template-columns:repeat(2,1fr)}
+.step:nth-child(2)::after{display:none}
+.depo-grid{grid-template-columns:1fr 1fr}
+.footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+.nav-links,.nav-cta{display:none}
+.nav-hamburger{display:flex}
+.servicos-grid{grid-template-columns:1fr 1fr}
+.galeria-grid{grid-template-columns:repeat(2,1fr)}
+.gal-item.large{grid-column:span 1;grid-row:span 1}
+.gal-item.large img{aspect-ratio:1/1;height:auto}
+.dif-grid{grid-template-columns:1fr}
+.depo-grid{grid-template-columns:1fr}
+.contato-grid{grid-template-columns:1fr}
+.footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+.hero-title{text-align:center}
+.hero-sub{text-align:center;margin-inline:auto}
+.hero-eyebrow{justify-content:center}
+.hero-actions{justify-content:center;width:100%}
+.hero-actions .btn{width:100%;justify-content:center}
+.hero-badge{left:50%;transform:translateX(-50%);white-space:nowrap}
+.cred-grid{grid-template-columns:repeat(2,1fr)}
+.cred-item:nth-child(2)::after{display:none}
+.cred-item:nth-child(4)::after{display:none}
+.servicos-grid{grid-template-columns:1fr}
+.como-steps{grid-template-columns:1fr}
+.step::after{display:none}
+.galeria-grid{grid-template-columns:1fr 1fr}
+.footer-grid{grid-template-columns:1fr}
+.cta-form input,.cta-form select{flex:1 1 100%}
+.sobre-inner{text-align:center}
+.sobre-gold-line{justify-content:center}
+.sobre-chips{justify-content:center}
+.divider-thin{margin-inline:auto}
+.footer-bottom-inner{justify-content:center;text-align:center}
+.dif-grid{grid-template-columns:1fr}
+.depo-grid{grid-template-columns:1fr}
+.contato-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+*{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav" role="navigation">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo" aria-label="Dra. Ana Amélia Cruz">
+      <img src="https://draanaameliacruz.com.br/uploads/logo3.png" alt="Logo Dra. Ana Amélia Cruz" width="132" height="44" loading="eager">
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <a href="https://wa.me/5583998966353" target="_blank" rel="noopener" class="btn btn-primary nav-cta" aria-label="Agendar via WhatsApp">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.7 11.6 19.79 19.79 0 01.67 2.98 2 2 0 012.65 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      Agendar Consulta
+    </a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="nav-mobile" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu principal">
+  <a href="#sobre" class="mobile-link">Sobre</a>
+  <a href="#servicos" class="mobile-link">Serviços</a>
+  <a href="#galeria" class="mobile-link">Galeria</a>
+  <a href="#depoimentos" class="mobile-link">Depoimentos</a>
+  <a href="#faq" class="mobile-link">FAQ</a>
+  <a href="#contato" class="mobile-link">Contato</a>
+  <a href="https://wa.me/5583998966353" target="_blank" rel="noopener" class="btn btn-primary">Agendar Consulta</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home" aria-label="Apresentação">
+  <div class="hero-visual" aria-hidden="true">
+    <div class="hero-img-wrap">
+      <img src="https://draanaameliacruz.com.br/uploads/24.jpeg" alt="Consultório Dra. Ana Amélia Cruz" width="800" height="1000" loading="eager" fetchpriority="high">
+    </div>
+    <div class="hero-img-scrim"></div>
+  </div>
+  <span class="mono-ghost" aria-hidden="true">AA</span>
+  <div class="hero-content">
+    <div class="hero-eyebrow" aria-hidden="true">
+      <span>João Pessoa · 2026</span>
+    </div>
+    <h1 class="hero-title display" id="hero-title">
+      Seu melhor<br>
+      <em>sorriso</em><br>
+      começa aqui
+    </h1>
+    <p class="hero-sub" id="hero-sub">
+      Ortodontia, prótese e estética dental com precisão clínica e cuidado personalizado. A transformação que você merece, nas mãos certas.
+    </p>
+    <div class="hero-actions" id="hero-actions">
+      <a href="https://wa.me/5583998966353" target="_blank" rel="noopener" class="btn btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.7 11.6 19.79 19.79 0 01.67 2.98 2 2 0 012.65 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        Agendar via WhatsApp
+      </a>
+      <a href="#servicos" class="btn btn-ghost-white">Ver Serviços</a>
+    </div>
+    <div class="hero-badge" id="hero-badge">
+      <svg class="hero-badge-seal" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="26" cy="26" r="24" stroke="#d5c0a0" stroke-width=".8" opacity=".5"/>
+        <circle cx="26" cy="26" r="20" stroke="#d5c0a0" stroke-width=".5" opacity=".35"/>
+        <text x="26" y="31" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="16" font-weight="600" fill="#d5c0a0" opacity=".85">AA</text>
+      </svg>
+      <div class="hero-badge-text">
+        <strong>Especialista</strong>
+        Ortodontia · Prótese
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDIBILIDADE -->
+<section class="cred" aria-label="Credenciais">
+  <div class="container cred-inner">
+    <div class="cred-grid">
+      <div class="cred-item reveal-item">
+        <div class="cred-num">10+</div>
+        <div class="cred-label">Anos de Experiência</div>
+      </div>
+      <div class="cred-item reveal-item">
+        <div class="cred-num">1.200+</div>
+        <div class="cred-label">Sorrisos Transformados</div>
+      </div>
+      <div class="cred-item reveal-item">
+        <div class="cred-num">4</div>
+        <div class="cred-label">Especialidades</div>
+      </div>
+      <div class="cred-item reveal-item">
+        <div class="cred-num">4.9★</div>
+        <div class="cred-label">Avaliação dos Pacientes</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="section-gap" id="sobre" aria-label="Sobre a Dra. Ana Amélia">
+  <div class="container">
+    <div class="sobre-inner">
+      <div class="sobre-visual reveal-item">
+        <div class="sobre-arc">
+          <img src="https://draanaameliacruz.com.br/uploads/4.jpeg" alt="Dra. Ana Amélia Cruz — Ortodontista" width="480" height="640" loading="lazy">
+        </div>
+        <div class="sobre-tag">CRO · Especialista</div>
+      </div>
+      <div class="sobre-text">
+        <div class="sobre-gold-line reveal-item">
+          <span class="label-tag">Sobre a Doutora</span>
+        </div>
+        <h2 class="display display-lg reveal-item">Dra. Ana Amélia <em style="font-style:italic;color:var(--green-light)">Cruz</em></h2>
+        <span class="divider-thin reveal-item"></span>
+        <div class="sobre-bio">
+          <p class="body-lg reveal-item">
+            Odontologia é a minha paixão. Mudar a vida das pessoas, oferecendo a cada um o melhor sorriso possível e melhorar sua qualidade de vida: isso é muito gratificante.
+          </p>
+          <p class="body-sm reveal-item">
+            Graduada pela Universidade Estadual da Paraíba (UEPB), com especialização em Ortodontia, Prótese Dentária e Estética Cosmética. Formação em laminados cerâmicos e aperfeiçoamento contínuo para oferecer os tratamentos mais modernos do mercado.
+          </p>
+        </div>
+        <div class="sobre-chips reveal-item">
+          <span class="chip">UEPB</span>
+          <span class="chip">Especialista em Ortodontia</span>
+          <span class="chip">Especialista em Prótese</span>
+          <span class="chip">Estética Dental</span>
+          <span class="chip">Laminados Cerâmicos</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="servicos section-gap" id="servicos" aria-label="Serviços">
+  <div class="container">
+    <div style="max-width:560px">
+      <span class="label-tag reveal-item">Tratamentos</span>
+      <h2 class="display display-lg reveal-item" style="margin-top:12px">Cuidado completo em <em style="font-style:italic;color:var(--green-light)">um só lugar</em></h2>
+      <span class="divider-thin reveal-item"></span>
+      <p class="body-lg reveal-item">Múltiplas especialidades, diagnóstico preciso e plano de tratamento personalizado para cada paciente.</p>
+    </div>
+    <div class="servicos-grid">
+      <article class="svc-card reveal-item">
+        <div class="svc-img">
+          <img src="assets/ai-2.jpg" alt="Ortodontia" loading="lazy" width="400" height="267">
+        </div>
+        <div class="svc-body">
+          <div class="svc-num">01</div>
+          <h3 class="svc-title">Ortodontia</h3>
+          <p class="svc-desc">Aparelhos convencionais e autoligados, metálicos ou estéticos, para alinhar dentes e oclusão com precisão.</p>
+          <a href="https://wa.me/5583998966353" class="svc-link" aria-label="Saiba mais sobre Ortodontia">
+            Agendar
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="svc-card reveal-item">
+        <div class="svc-img">
+          <img src="assets/ai-3.jpg" alt="Ortopedia Facial" loading="lazy" width="400" height="267">
+        </div>
+        <div class="svc-body">
+          <div class="svc-num">02</div>
+          <h3 class="svc-title">Ortopedia Facial</h3>
+          <p class="svc-desc">Aparelhos ortopédicos que atuam no crescimento ósseo. Diagnóstico precoce a partir dos 6 anos.</p>
+          <a href="https://wa.me/5583998966353" class="svc-link" aria-label="Saiba mais sobre Ortopedia Facial">
+            Agendar
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="svc-card reveal-item">
+        <div class="svc-img">
+          <img src="https://draanaameliacruz.com.br/uploads/implantes.jpg" alt="Prótese Dentária" loading="lazy" width="400" height="267">
+        </div>
+        <div class="svc-body">
+          <div class="svc-num">03</div>
+          <h3 class="svc-title">Prótese Dentária</h3>
+          <p class="svc-desc">Próteses fixas, parciais e totais para recuperar a função mastigatória e a estética com excelência.</p>
+          <a href="https://wa.me/5583998966353" class="svc-link" aria-label="Saiba mais sobre Prótese">
+            Agendar
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="svc-card reveal-item">
+        <div class="svc-img">
+          <img src="https://draanaameliacruz.com.br/uploads/lentes-de-contato-dental-smile-cursos.jpg" alt="Facetas em Porcelana" loading="lazy" width="400" height="267">
+        </div>
+        <div class="svc-body">
+          <div class="svc-num">04</div>
+          <h3 class="svc-title">Facetas em Porcelana</h3>
+          <p class="svc-desc">Lâminas ultrafinas que recobrem a face visível do dente para uma transformação estética natural e duradoura.</p>
+          <a href="https://wa.me/5583998966353" class="svc-link" aria-label="Saiba mais sobre Facetas">
+            Agendar
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="svc-card reveal-item">
+        <div class="svc-img">
+          <img src="https://draanaameliacruz.com.br/uploads/facetas-de-resina.jpg" alt="Clareamento Dentário" loading="lazy" width="400" height="267">
+        </div>
+        <div class="svc-body">
+          <div class="svc-num">05</div>
+          <h3 class="svc-title">Clareamento Dentário</h3>
+          <p class="svc-desc">Procedimento conservador com acompanhamento seguro para atingir o branco máximo natural do seu sorriso.</p>
+          <a href="https://wa.me/5583998966353" class="svc-link" aria-label="Saiba mais sobre Clareamento">
+            Agendar
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="svc-card reveal-item">
+        <div class="svc-img">
+          <img src="assets/ai-1.jpg" alt="Limpeza Dentária" loading="lazy" width="400" height="267">
+        </div>
+        <div class="svc-body">
+          <div class="svc-num">06</div>
+          <h3 class="svc-title">Limpeza Dentária</h3>
+          <p class="svc-desc">Remoção de placa e tártaro para saúde periodontal, prevenção do mau hálito e gengivite. Recomendada a cada 6 meses.</p>
+          <a href="https://wa.me/5583998966353" class="svc-link" aria-label="Saiba mais sobre Limpeza">
+            Agendar
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="como section-gap" id="como-funciona" aria-label="Como funciona">
+  <div class="como-mono" aria-hidden="true">04</div>
+  <div class="container como-inner">
+    <span class="label-tag" style="color:var(--gold-light)" class="reveal-item">Processo</span>
+    <h2 class="display display-lg como-title reveal-item" style="margin-top:12px">Como funciona o<br><em>seu tratamento</em></h2>
+    <span class="divider-thin reveal-item" style="background:var(--gold)"></span>
+    <p class="como-sub body-lg reveal-item">Cada etapa foi pensada para garantir segurança, conforto e o melhor resultado possível para você.</p>
+    <div class="como-steps">
+      <div class="step reveal-item">
+        <div class="step-img">
+          <img src="assets/ai-5.jpg" alt="Consulta de diagnóstico" loading="lazy" width="300" height="300">
+        </div>
+        <div class="step-num">01</div>
+        <div class="step-title">Diagnóstico</div>
+        <p class="step-desc">Avaliação clínica completa com exames de imagem e mapeamento das necessidades individuais do paciente.</p>
+      </div>
+      <div class="step reveal-item">
+        <div class="step-img">
+          <img src="assets/ai-4.jpg" alt="Planejamento do tratamento" loading="lazy" width="300" height="300">
+        </div>
+        <div class="step-num">02</div>
+        <div class="step-title">Planejamento</div>
+        <p class="step-desc">Elaboração de um plano personalizado com objetivos claros, cronograma e opções de tratamento apresentadas ao paciente.</p>
+      </div>
+      <div class="step reveal-item">
+        <div class="step-img">
+          <img src="assets/ai-6.jpg" alt="Execução do tratamento" loading="lazy" width="300" height="300">
+        </div>
+        <div class="step-num">03</div>
+        <div class="step-title">Tratamento</div>
+        <p class="step-desc">Execução com protocolos modernos, equipamentos de última geração e máxima atenção ao conforto e segurança.</p>
+      </div>
+      <div class="step reveal-item">
+        <div class="step-img">
+          <img src="assets/ai-7.jpg" alt="Acompanhamento pós-tratamento" loading="lazy" width="300" height="300">
+        </div>
+        <div class="step-num">04</div>
+        <div class="step-title">Acompanhamento</div>
+        <p class="step-desc">Retornos periódicos para garantir a manutenção dos resultados e a saúde bucal a longo prazo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section class="galeria section-gap" id="galeria" aria-label="Galeria de transformações">
+  <div class="container">
+    <div class="galeria-intro">
+      <span class="label-tag reveal-item">Resultados Reais</span>
+      <h2 class="display display-lg reveal-item" style="margin-top:12px">Antes e depois<br><em style="font-style:italic;color:var(--green-light)">que falam por si</em></h2>
+      <span class="divider-thin reveal-item"></span>
+      <p class="body-lg reveal-item">Transformações realizadas com precisão técnica e cuidado estético, resultado da dedicação da Dra. Ana Amélia em cada tratamento.</p>
+    </div>
+    <div class="galeria-grid">
+      <div class="gal-item large reveal-item">
+        <img src="https://draanaameliacruz.com.br/uploads/antes-depois-laminados-ceramicos.jpeg" alt="Laminados Cerâmicos — Antes e Depois" loading="lazy" width="600" height="600">
+        <span class="gal-label">Laminados Cerâmicos</span>
+      </div>
+      <div class="gal-item reveal-item">
+        <img src="https://draanaameliacruz.com.br/uploads/antes-depois-clareamento.jpeg" alt="Clareamento Dentário — Antes e Depois" loading="lazy" width="300" height="300">
+        <span class="gal-label">Clareamento</span>
+      </div>
+      <div class="gal-item reveal-item">
+        <img src="https://draanaameliacruz.com.br/uploads/antes-depois-ortodontia.jpeg" alt="Ortodontia — Antes e Depois" loading="lazy" width="300" height="300">
+        <span class="gal-label">Ortodontia</span>
+      </div>
+      <div class="gal-item reveal-item">
+        <img src="https://draanaameliacruz.com.br/uploads/antes-depois-coroas-totais-de-porcelana.jpeg" alt="Coroas de Porcelana — Antes e Depois" loading="lazy" width="300" height="300">
+        <span class="gal-label">Coroas de Porcelana</span>
+      </div>
+      <div class="gal-item reveal-item">
+        <img src="https://draanaameliacruz.com.br/uploads/antes-depois-protese-parcial-removivel.jpeg" alt="Prótese Parcial — Antes e Depois" loading="lazy" width="300" height="300">
+        <span class="gal-label">Prótese Parcial</span>
+      </div>
+      <div class="gal-item reveal-item">
+        <img src="https://draanaameliacruz.com.br/uploads/antes-depois-protese-total.jpeg" alt="Prótese Total — Antes e Depois" loading="lazy" width="300" height="300">
+        <span class="gal-label">Prótese Total</span>
+      </div>
+      <div class="gal-item reveal-item">
+        <img src="https://draanaameliacruz.com.br/uploads/antes-depois-protese-fixa.jpeg" alt="Prótese Fixa — Antes e Depois" loading="lazy" width="300" height="300">
+        <span class="gal-label">Prótese Fixa</span>
+      </div>
+      <div class="gal-item reveal-item">
+        <img src="https://draanaameliacruz.com.br/uploads/gallery-01.jpeg" alt="Resultado de tratamento" loading="lazy" width="300" height="300">
+        <span class="gal-label">Resultado</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="depo section-gap" id="depoimentos" aria-label="Depoimentos de pacientes">
+  <div class="container">
+    <div style="max-width:520px">
+      <span class="label-tag reveal-item">Depoimentos</span>
+      <h2 class="display display-lg reveal-item" style="margin-top:12px">O que dizem<br><em style="font-style:italic;color:var(--green-light)">nossos pacientes</em></h2>
+      <span class="divider-thin reveal-item"></span>
+    </div>
+    <div class="depo-grid">
+      <div class="depo-card reveal-item">
+        <div class="depo-stars" aria-label="5 estrelas">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <span class="depo-quote" aria-hidden="true">"</span>
+        <blockquote class="depo-text">"Fiz meu tratamento ortodôntico com a Dra. Ana Amélia e o resultado superou todas as expectativas. Cuidado, atenção e profissionalismo em cada consulta."</blockquote>
+        <div class="depo-author">
+          <div class="depo-avatar">
+            <img src="https://draanaameliacruz.com.br/uploads/gallery-02.jpeg" alt="Foto da paciente Mariana" loading="lazy" width="36" height="36">
+          </div>
+          <div>
+            <div class="depo-name">Mariana S.</div>
+            <div class="depo-role">Paciente · Ortodontia</div>
+          </div>
+        </div>
+      </div>
+      <div class="depo-card reveal-item">
+        <div class="depo-stars" aria-label="5 estrelas">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <span class="depo-quote" aria-hidden="true">"</span>
+        <blockquote class="depo-text">"As facetas de porcelana mudaram minha autoestima completamente. A Dra. Ana Amélia é extremamente cuidadosa e o consultório é muito aconchegante."</blockquote>
+        <div class="depo-author">
+          <div class="depo-avatar">
+            <img src="https://draanaameliacruz.com.br/uploads/gallery-03.jpeg" alt="Foto da paciente Fernanda" loading="lazy" width="36" height="36">
+          </div>
+          <div>
+            <div class="depo-name">Fernanda L.</div>
+            <div class="depo-role">Paciente · Facetas</div>
+          </div>
+        </div>
+      </div>
+      <div class="depo-card reveal-item">
+        <div class="depo-stars" aria-label="5 estrelas">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <span class="depo-quote" aria-hidden="true">"</span>
+        <blockquote class="depo-text">"Levei meu filho para ortopedia facial e o atendimento foi impecável. A doutora explicou tudo com calma e paciência. Recomendo com toda certeza!"</blockquote>
+        <div class="depo-author">
+          <div class="depo-avatar">
+            <img src="https://draanaameliacruz.com.br/uploads/gallery-05.jpeg" alt="Foto da paciente Cláudia" loading="lazy" width="36" height="36">
+          </div>
+          <div>
+            <div class="depo-name">Cláudia M.</div>
+            <div class="depo-role">Mãe de Paciente · Ortopedia Facial</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="dif section-gap" aria-label="Nossos diferenciais">
+  <div class="container">
+    <div style="max-width:520px">
+      <span class="label-tag reveal-item">Por que escolher</span>
+      <h2 class="display display-lg reveal-item" style="margin-top:12px">O que nos torna<br><em style="font-style:italic;color:var(--green-light)">diferentes</em></h2>
+      <span class="divider-thin reveal-item"></span>
+    </div>
+    <div class="dif-grid">
+      <div class="dif-card reveal-item">
+        <div class="dif-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="dif-title">Tecnologia de Ponta</h3>
+        <p class="dif-desc">Aparelhos autoligados de última geração, estéticos e metálicos, para tratamentos mais rápidos, confortáveis e eficientes.</p>
+      </div>
+      <div class="dif-card reveal-item">
+        <div class="dif-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+        <h3 class="dif-title">Atendimento Acolhedor</h3>
+        <p class="dif-desc">Ambiente pensado para que cada paciente se sinta seguro e confortável. Escuta ativa e plano de tratamento construído junto com você.</p>
+      </div>
+      <div class="dif-card reveal-item">
+        <div class="dif-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3 class="dif-title">Múltiplas Especialidades</h3>
+        <p class="dif-desc">Ortodontia, prótese, facetas, clareamento e mais, tudo sob a supervisão de uma única especialista. Continuidade e qualidade em cada etapa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq section-gap" id="faq" aria-label="Perguntas frequentes">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,80px);align-items:start">
+      <div>
+        <span class="label-tag reveal-item">Dúvidas Frequentes</span>
+        <h2 class="display display-lg reveal-item" style="margin-top:12px">Suas perguntas,<br><em style="font-style:italic;color:var(--green-light)">respondidas</em></h2>
+        <span class="divider-thin reveal-item"></span>
+        <p class="body-lg reveal-item" style="margin-top:8px">Ainda tem dúvidas? Fale diretamente com a Dra. Ana Amélia pelo WhatsApp.</p>
+        <a href="https://wa.me/5583998966353" target="_blank" rel="noopener" class="btn btn-primary reveal-item" style="margin-top:28px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.7 11.6 19.79 19.79 0 01.67 2.98 2 2 0 012.65 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          Tire sua dúvida agora
+        </a>
+      </div>
+      <div>
+        <div class="faq-list reveal-item" role="list">
+          <div class="faq-item" role="listitem">
+            <button class="faq-q" aria-expanded="false">
+              Com qual idade a criança pode colocar aparelho?
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </button>
+            <div class="faq-a" role="region">
+              <p class="faq-a-inner">É indicada a primeira consulta com o ortodontista por volta dos 6 anos de idade. Nessa avaliação são solicitados exames e, se necessário, o tratamento já pode começar nessa fase.</p>
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-q" aria-expanded="false">
+              Clareamento enfraquece os dentes?
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </button>
+            <div class="faq-a" role="region">
+              <p class="faq-a-inner">Não. O clareamento não danifica a estrutura dentária. Ele apenas remove os pigmentos que deixam os dentes amarelados, sem alterar o esmalte.</p>
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-q" aria-expanded="false">
+              Clareamento pode deixar os dentes sensíveis?
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </button>
+            <div class="faq-a" role="region">
+              <p class="faq-a-inner">Algumas pessoas apresentam sensibilidade, geralmente nos dois primeiros dias após a aplicação. Para amenizar, utilizamos um dessensibilizante antes do procedimento.</p>
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-q" aria-expanded="false">
+              Como higienizar próteses removíveis?
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </button>
+            <div class="faq-a" role="region">
+              <p class="faq-a-inner">Remova a prótese da boca, use uma escova exclusiva para ela e higienize com detergente neutro. Evite pasta de dente abrasiva para não arranhar a superfície.</p>
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-q" aria-expanded="false">
+              Qual a diferença entre prótese flexível e de grampo?
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </button>
+            <div class="faq-a" role="region">
+              <p class="faq-a-inner">A diferença principal é estética. A prótese flexível não tem estrutura metálica visível, sendo mais discreta ao sorrir. Porém, ela não é indicada para todos os casos.</p>
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-q" aria-expanded="false">
+              Posso alinhar os dentes com facetas?
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </button>
+            <div class="faq-a" role="region">
+              <p class="faq-a-inner">Se o desalinhamento for pequeno, sim. Desalinhamentos maiores precisam ser corrigidos com aparelho ortodôntico antes. A Dra. Ana Amélia avaliará o melhor caminho para seu caso.</p>
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-q" aria-expanded="false">
+              Com que frequência devo fazer limpeza dentária?
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </button>
+            <div class="faq-a" role="region">
+              <p class="faq-a-inner">A limpeza profissional deve ser feita pelo menos a cada 6 meses. Ela remove placa bacteriana e tártaro que a escovação diária não consegue eliminar, prevenindo gengivite e mau hálito.</p>
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-q" aria-expanded="false">
+              Quais casos o aparelho ortodôntico trata?
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </button>
+            <div class="faq-a" role="region">
+              <p class="faq-a-inner">O aparelho trata dentes desalinhados, diastemas (espaços), mordida aberta, mordida cruzada, hábitos como chupar dedo ou chupeta, e maloclusões de Classe II (dentuços) e Classe III (queixo projetado).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final" id="agendar" aria-label="Agendar consulta">
+  <div class="cta-final-bg" aria-hidden="true"></div>
+  <div class="cta-mono" aria-hidden="true">AA</div>
+  <div class="container cta-inner">
+    <span class="label-tag" style="color:var(--gold-light);display:block;margin-bottom:16px" class="reveal-item">Próximo Passo</span>
+    <h2 class="cta-title reveal-item">Pronto para o seu<br><em>novo sorriso?</em></h2>
+    <p class="cta-sub reveal-item">Agende sua avaliação e descubra o tratamento ideal para transformar sua saúde bucal e sua autoestima.</p>
+    <form class="cta-form reveal-item" onsubmit="handleForm(event)" novalidate aria-label="Formulário de agendamento rápido">
+      <input type="text" placeholder="Seu nome" aria-label="Nome" required autocomplete="name">
+      <input type="tel" placeholder="Seu telefone" aria-label="Telefone" required autocomplete="tel">
+      <select aria-label="Serviço desejado">
+        <option value="" disabled selected>Serviço de interesse</option>
+        <option>Ortodontia</option>
+        <option>Ortopedia Facial</option>
+        <option>Prótese Dentária</option>
+        <option>Facetas em Porcelana</option>
+        <option>Clareamento</option>
+        <option>Limpeza Dentária</option>
+        <option>Outro</option>
+      </select>
+      <button type="submit" class="btn btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.7 11.6 19.79 19.79 0 01.67 2.98 2 2 0 012.65 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        Enviar via WhatsApp
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="contato section-gap" id="contato" aria-label="Contato e localização">
+  <div class="container">
+    <div style="max-width:520px;margin-bottom:clamp(32px,4vw,48px)">
+      <span class="label-tag reveal-item">Horários e Acesso</span>
+      <h2 class="display display-lg reveal-item" style="margin-top:12px">Venha nos <em style="font-style:italic;color:var(--green-light)">visitar</em></h2>
+      <span class="divider-thin reveal-item"></span>
+    </div>
+    <div class="contato-grid">
+      <div class="contato-info">
+        <div class="c-item reveal-item">
+          <div class="c-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="c-label">Endereço</div>
+            <div class="c-value">Rua Walfredo Macedo Brandão, 1011<br>Bancários, Sala 201 — 1º Andar<br>João Pessoa, PB</div>
+          </div>
+        </div>
+        <div class="c-item reveal-item">
+          <div class="c-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.7 11.6 19.79 19.79 0 01.67 2.98 2 2 0 012.65 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="c-label">Telefone / WhatsApp</div>
+            <div class="c-value">
+              <a href="https://wa.me/5583998966353" target="_blank" rel="noopener">(83) 99896-6353</a>
+            </div>
+          </div>
+        </div>
+        <div class="c-item reveal-item">
+          <div class="c-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <div>
+            <div class="c-label">Horário de Atendimento</div>
+            <div class="c-value">Segunda a Sexta<br>08h00 até 20h00</div>
+          </div>
+        </div>
+        <div class="c-item reveal-item">
+          <div class="c-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div>
+            <div class="c-label">Redes Sociais</div>
+            <div class="c-value">
+              <a href="https://www.instagram.com/dra.anaameliacruz" target="_blank" rel="noopener">@dra.anaameliacruz</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal-item">
+        <div class="map-wrap">
+          <iframe src="https://www.google.com/maps?q=Rua+Walfredo+Macedo+Brandao+1011+Bancarios+Joao+Pessoa+PB&output=embed" loading="lazy" title="Localização da clínica da Dra. Ana Amélia Cruz" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer class="footer" aria-label="Rodapé">
+  <div class="container footer-main">
+    <div class="footer-grid">
+      <div>
+        <img src="https://draanaameliacruz.com.br/uploads/logo3.png" alt="Logo Dra. Ana Amélia Cruz" width="120" height="40" loading="lazy" class="footer-brand">
+        <p class="footer-tagline">Transformando sorrisos, transformando vidas em João Pessoa.</p>
+        <div class="footer-social" style="margin-top:20px">
+          <a href="https://www.instagram.com/dra.anaameliacruz" target="_blank" rel="noopener" aria-label="Instagram da Dra. Ana Amélia Cruz">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://wa.me/5583998966353" target="_blank" rel="noopener" aria-label="WhatsApp da Dra. Ana Amélia Cruz">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.7 11.6 19.79 19.79 0 01.67 2.98 2 2 0 012.65 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Navegação</div>
+        <ul class="footer-links" role="list">
+          <li><a href="#home">Início</a></li>
+          <li><a href="#sobre">Sobre a Dra.</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#depoimentos">Depoimentos</a></li>
+          <li><a href="#faq">Perguntas Frequentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contato</div>
+        <div class="footer-contact-line">
+          <span>(83) 99896-6353</span>
+          <a href="https://wa.me/5583998966353" target="_blank" rel="noopener">WhatsApp</a>
+          <span style="margin-top:8px;font-size:12px;opacity:.7">Rua Walfredo Macedo Brandão, 1011<br>Bancários — Sala 201, 1º Andar<br>João Pessoa, PB</span>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Especialidades</div>
+        <ul class="footer-links" role="list">
+          <li><a href="#servicos">Ortodontia</a></li>
+          <li><a href="#servicos">Ortopedia Facial</a></li>
+          <li><a href="#servicos">Prótese Dentária</a></li>
+          <li><a href="#servicos">Facetas em Porcelana</a></li>
+          <li><a href="#servicos">Clareamento</a></li>
+          <li><a href="#servicos">Limpeza Dentária</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <div class="footer-bottom-inner">
+      <span class="footer-copy">&copy; 2026 Dra. Ana Amélia Cruz. Todos os direitos reservados.</span>
+      <span class="footer-mono" aria-hidden="true">AA</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('load', function () {
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var mobileLinks = mobileMenu.querySelectorAll('.mobile-link, .btn');
+
+  hamburger.addEventListener('click', function () {
+    var open = mobileMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+
+  mobileLinks.forEach(function (link) {
+    link.addEventListener('click', function () {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  var faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(function (item) {
+    var btn = item.querySelector('.faq-q');
+    btn.addEventListener('click', function () {
+      var isOpen = item.classList.contains('open');
+      faqItems.forEach(function (i) {
+        i.classList.remove('open');
+        i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  if (window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from('#hero-title', {
+      opacity: 0,
+      y: 28,
+      duration: 1,
+      ease: 'power3.out',
+      delay: 0.15
+    });
+    gsap.from('#hero-sub', {
+      opacity: 0,
+      y: 20,
+      duration: 0.9,
+      ease: 'power3.out',
+      delay: 0.35
+    });
+    gsap.from('#hero-actions', {
+      opacity: 0,
+      y: 16,
+      duration: 0.8,
+      ease: 'power3.out',
+      delay: 0.55
+    });
+    gsap.from('#hero-badge', {
+      opacity: 0,
+      y: 12,
+      duration: 0.7,
+      ease: 'power3.out',
+      delay: 0.75
+    });
+
+    document.fonts.ready.then(function () {
+      ScrollTrigger.batch('.reveal-item', {
+        once: true,
+        start: 'top 88%',
+        onEnter: function (batch) {
+          gsap.to(batch, {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.07,
+            ease: 'power3.out'
+          });
+        }
+      });
+
+      gsap.set('.reveal-item', { opacity: 0, y: 18 });
+      ScrollTrigger.refresh();
+    });
+  }
+});
+
+function handleForm(e) {
+  e.preventDefault();
+  var form = e.target;
+  var name = form.querySelector('input[type="text"]').value.trim();
+  var phone = form.querySelector('input[type="tel"]').value.trim();
+  var service = form.querySelector('select').value;
+  if (!name || !phone) return;
+  var msg = 'Olá! Gostaria de agendar uma consulta.\n\nNome: ' + name + '\nTelefone: ' + phone + (service ? '\nServiço: ' + service : '');
+  window.open('https://wa.me/5583998966353?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+}
+</script>
+</body>
+</html>
